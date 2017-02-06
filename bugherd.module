@@ -40,5 +40,3 @@ function bugherd_page_attachments(array &$attachments) {
     $attachments['#attached']['library'][] = 'bugherd/bugherd';
   }
 }
-
-

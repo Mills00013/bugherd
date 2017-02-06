@@ -8,9 +8,10 @@ use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Session\AccountProxy;
 
 /**
-* Class BugherdManager
-* @package Drupal\bugherd\Manager
-*/
+ * Class BugherdManager.
+ *
+ * @package Drupal\bugherd\Manager
+ */
 class BugherdManager {
 
   protected $currentUser;
@@ -18,6 +19,9 @@ class BugherdManager {
   protected $currentRouteMatch;
   protected $config;
 
+  /**
+   * Constructor for BugherdManager.
+   */
   public function __construct(AccountProxy $currentUser, AdminContext $adminContext, CurrentRouteMatch $currentRouteMatch, ConfigFactoryInterface $config) {
     $this->currentUser = $currentUser;
     $this->adminContext = $adminContext;
@@ -27,6 +31,7 @@ class BugherdManager {
 
   /**
    * Checks if the current page needs bugherd error reporting.
+   *
    * @return bool
    */
   public function pageApplies() {
@@ -34,20 +39,20 @@ class BugherdManager {
     $project_key = $this->config->get('project_key', FALSE);
 
     // Check if the api key was set properly.
-    if($project_key === FALSE) {
+    if ($project_key === FALSE) {
       drupal_set_message('The Bugherd project API key is not set in the bugherd configuration form.', 'warning');
       return FALSE;
     }
 
     // Check if the user has access to bugherd.
-    if(!$this->currentUser->hasPermission('access bugherd')) {
+    if (!$this->currentUser->hasPermission('access bugherd')) {
       return FALSE;
     }
 
     $disable_on_admin = $this->config->get('disable_on_admin', FALSE);
 
     // Check if bugherd should be loaded for admin pages.
-    if($this->adminContext->isAdminRoute($this->currentRouteMatch->getRouteObject()) && $disable_on_admin) {
+    if ($this->adminContext->isAdminRoute($this->currentRouteMatch->getRouteObject()) && $disable_on_admin) {
       return FALSE;
     }
 
@@ -56,6 +61,7 @@ class BugherdManager {
 
   /**
    * Returns JS settings.
+   *
    * @return array
    */
   public function getJsSettings() {
@@ -63,4 +69,5 @@ class BugherdManager {
       'api_key' => $this->config->get('project_key'),
     ];
   }
+
 }
