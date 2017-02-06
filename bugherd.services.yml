@@ -1,0 +1,4 @@
+services:
+  bugherd.manager:
+    class: Drupal\bugherd\Manager\BugherdManager
+    arguments: ['@current_user', '@router.admin_context', '@current_route_match', '@config.factory']

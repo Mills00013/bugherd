@@ -1,0 +1,6 @@
+bugherd:
+  version: VERSION
+  js:
+    js/bugherd.js: {}
+  dependencies:
+      - core/drupalSettings
