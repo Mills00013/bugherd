@@ -2,5 +2,6 @@
     "name": "drupal/bugherd",
     "description": "Adds BugHerd issue reporting to your site",
     "type": "drupal-module",
-    "require": {}
+    "require": {},
+    "license": "GPL-2.0+"
 }
