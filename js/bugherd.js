@@ -12,7 +12,6 @@
 
       // Get the bugherd settings so we can extract the api key.
       var config = settings.bugherd;
-      console.log(config);
 
       // Add bugherd embed script.
       (function (d, t) {
